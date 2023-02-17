@@ -1,10 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import Application from './components/Application';
+import { DataContextProvider } from './components/DataContext';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import './main.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <React.StrictMode>
+        <DataContextProvider>
+            <Application />
+        </DataContextProvider>
+    </React.StrictMode>,
 )
