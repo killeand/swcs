@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { ulid } from 'ulid';
 import DataContext from '../components/DataContext';
 import Modal from '../components/Modal';
+import Button from '../components/Button';
 import '../styles/Page.css';
 
 export default function FileManager() {
@@ -17,7 +18,7 @@ export default function FileManager() {
     },[]);
 
     function NewCharacter() {
-        let newFiles = [DC.files];
+        let newFiles = [...DC.files];
         newFiles.push({
             _id: ulid(),
             title: newTitle,
@@ -103,9 +104,9 @@ export default function FileManager() {
                     </div>
                     <div className="flex">
                         {(newTitle == "")?(
-                            <button className="btn btn-disabled flex-grow">Create Character</button>
+                            <Button color="disabled" className="flex-grow">Create Character</Button>
                         ):(
-                            <button className="btn btn-success flex-grow" onClick={NewCharacter}>Create Character</button>
+                            <Button color="green" className="flex-grow" onClick={NewCharacter}>Create Character</Button>
                         )}
                     </div>
                 </Modal>
@@ -122,7 +123,7 @@ export default function FileManager() {
             return (
                 <div className="flex flex-row items-center space-x-3 p-1 last:rounded-b-md hover:bg-gradient-to-r hover:from-slate-300 hover:to-white">
                     <div className="flex-grow">{title}</div>
-                    <button className="btn btn-error bi-trash" onClick={()=>ClearData(path)}> Clear</button>
+                    <Button color="red" className="bi-trash" onClick={()=>ClearData(path)}> Clear</Button>
                 </div>
             );
         }
@@ -161,10 +162,10 @@ export default function FileManager() {
                 <div key={`character-${files._id}`} className="border border-sky-300 rounded-md p-1 flex flex-row items-center space-x-2">
                     <div className="flex-grow" onClick={()=>console.info(DC.files[index])}>{files.title}</div>
                     <div className="flex flex-row space-x-1">
-                        <button className="btn btn-outline bi-eraser" onClick={()=>{setClearModal(true);setClearIndex(index);}} />
-                        <button className={"btn " + (files.loaded)?"text-stone-400 bi-square-fill btn-outline":"text-white bi-caret-right-fill btn-primary"} onClick={()=>ActivateCharacter(index)} />
-                        <button className={"btn bi-save-fill " + ((files.saved)?"text-stone-400 btn-outline":"text-white btn-success")} onClick={()=>SaveCharacter(index)} />
-                        <button className="btn btn-error bi-trash" onClick={()=>RemoveCharacter(index)} />
+                        <Button color="white" className="bi-eraser" onClick={()=>{setClearModal(true);setClearIndex(index);}} />
+                        <Button color={(files.loaded)?"blue":"white"} className={(files.loaded)?"text-stone-400 bi-square-fill":"text-white bi-caret-right-fill"} onClick={()=>ActivateCharacter(index)} />
+                        <Button color={`${(files.saved)?"white":"green"}`} className={"bi-save-fill " + ((files.saved)?"text-stone-400":"text-white")} onClick={()=>SaveCharacter(index)} />
+                        <Button color="red" className="bi-trash" onClick={()=>RemoveCharacter(index)} />
                     </div>
                 </div>
             );
@@ -177,11 +178,11 @@ export default function FileManager() {
             {RenderClearDataModal()}
             <h1>File Manager</h1>
             <div className="main-container">
-                <button className="btn btn-primary" onClick={()=>setNewCharModal(true)}>New Character</button>
-                <button as="label" className="btn btn-primary">
+                <Button color="blue" onClick={()=>setNewCharModal(true)}>New Character</Button>
+                <Button as="label" color="blue">
                     <input type="file" className="hidden h-0" multiple accept=".txt" onChange={LoadCharacter} />
                     Load Character
-                </button>
+                </Button>
             </div>
             <h2>Characters</h2>
             <div className="main-container">
@@ -189,20 +190,20 @@ export default function FileManager() {
             </div>
             <div className="msg-container space-y-1">
                 <div className="font-bold">
-                    <button className="btn btn-outline bi-eraser text-xs px-1 py-0.5" /> - Clear Data
+                    <Button color="white" className="bi-eraser text-xs px-1 py-0.5" /> - Clear Data
                 </div>
                 <div className="font-bold">
-                    <button className="btn btn-outline bi-square-fill text-stone-400 text-xs px-1 py-0.5" /> - Disable Character &nbsp;
-                    <button className="btn btn-primary bi-caret-right-fill text-white text-xs px-1 py-0.5" /> - Activate Character 
+                    <Button color="white" className="bi-square-fill text-stone-400 text-xs px-1 py-0.5" /> - Disable Character &nbsp;
+                    <Button color="blue" className="bi-caret-right-fill text-white text-xs px-1 py-0.5" /> - Activate Character 
                 </div>
                 <div className="font-bold">
-                    <button className="btn btn-outline bi-save-fill text-stone-400 text-xs px-1 py-0.5" /> - Character Saved &nbsp;
-                    <button className="btn btn-success bi-save-fill text-white text-xs px-1 py-0.5" /> - Character NOT Saved
+                    <Button color="white" className="bi-save-fill text-stone-400 text-xs px-1 py-0.5" /> - Character Saved &nbsp;
+                    <Button color="green" className="bi-save-fill text-white text-xs px-1 py-0.5" /> - Character NOT Saved
                 </div>
                 <div className="font-bold">
-                    <button className="btn btn-error bi-trash text-xs px-1 py-0.5" /> - Remove Character
+                    <Button color="red" className="bi-trash text-xs px-1 py-0.5" /> - Remove Character
                 </div>
-                <div>Characters will be stored upon any changes to the list from this page, or periodically every 10 seconds. Upon loading the page again, they should be reloaded. Please note that this store uses localstorage for the characters, so if you move this web application the localstorage will be reset. It is a known flaw with non-server based web applications. To prevent any major losses, make sure you <button className="btn btn-success bi-save-fill text-white text-xs px-1 py-0.5" /> save the characters listed.</div>
+                <div>Characters will be stored upon any changes to the list from this page, or periodically every 10 seconds. Upon loading the page again, they should be reloaded. Please note that this store uses localstorage for the characters, so if you move this web application the localstorage will be reset. It is a known flaw with non-server based web applications. To prevent any major losses, make sure you <Button color="green" className="bi-save-fill text-white text-xs px-1 py-0.5" /> save the characters listed.</div>
             </div>
         </>
     );
