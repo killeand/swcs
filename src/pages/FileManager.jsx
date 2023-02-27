@@ -163,7 +163,7 @@ export default function FileManager() {
                     <div className="flex-grow" onClick={()=>console.info(DC.files[index])}>{files.title}</div>
                     <div className="flex flex-row space-x-1">
                         <Button color="white" className="bi-eraser" onClick={()=>{setClearModal(true);setClearIndex(index);}} />
-                        <Button color={(files.loaded)?"blue":"white"} className={(files.loaded)?"text-stone-400 bi-square-fill":"text-white bi-caret-right-fill"} onClick={()=>ActivateCharacter(index)} />
+                        <Button color={(files.loaded)?"white":"blue"} className={(files.loaded)?"text-stone-400 bi-square-fill":"text-white bi-caret-right-fill"} onClick={()=>ActivateCharacter(index)} />
                         <Button color={`${(files.saved)?"white":"green"}`} className={"bi-save-fill " + ((files.saved)?"text-stone-400":"text-white")} onClick={()=>SaveCharacter(index)} />
                         <Button color="red" className="bi-trash" onClick={()=>RemoveCharacter(index)} />
                     </div>
@@ -178,8 +178,8 @@ export default function FileManager() {
             {RenderClearDataModal()}
             <h1>File Manager</h1>
             <div className="main-container">
-                <Button color="blue" onClick={()=>setNewCharModal(true)}>New Character</Button>
-                <Button as="label" color="blue">
+                <Button onClick={()=>setNewCharModal(true)}>New Character</Button>
+                <Button as="label">
                     <input type="file" className="hidden h-0" multiple accept=".txt" onChange={LoadCharacter} />
                     Load Character
                 </Button>

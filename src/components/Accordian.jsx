@@ -11,7 +11,7 @@ export default function Accordian({title, titleAside, color, className, children
         white: { bg: "bg-white", border: "border-gray-600" },
         psorange: { bg: "bg-stone-300", border: "border-psorange" },
         psgray: { bg: "bg-white", border: "border-psgray" },
-        default: { bg: "bg-gray-200", border: "border-gray-800" }
+        default: { bg: "bg-primary-content", border: "border-primary" }
     }
     
     let [ open, setOpen ] = useState(false);
@@ -27,10 +27,10 @@ export default function Accordian({title, titleAside, color, className, children
     
     return (
         <div className={className}>
-            <div className={`flex flex-row space-x-1 p-1 cursor-pointer rounded-t-md border-b ${topStyle} ${bg} ${border}`} onClick={ToggleOpen}>
+            <div className={`flex flex-row space-x-1 p-0.5 cursor-pointer rounded-t-md border-b ${topStyle} ${bg} ${border}`} onClick={ToggleOpen}>
                 <div className={`pointer-events-none flex items-center ${caretStyle}`} />
                 <div className="pointer-events-none flex items-center flex-grow font-bold">{title}</div>
-                <div className="flex flex-row items-center space-x-2">{titleAside}</div>
+                <div className="pointer-events-none flex flex-row items-center space-x-2">{titleAside}</div>
             </div>
             <div className={`border px-1 rounded-b-md ${bottomStyle} ${border}`}>
                 {children}

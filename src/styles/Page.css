@@ -11,7 +11,7 @@
 }
 
 .blank-container {
-    @apply flex flex-col border-2 border-sky-300 rounded-md p-1 base-size;
+    @apply flex flex-col border-2 border-primary-content rounded-md p-1 base-size;
 }
 
 .msg-container {

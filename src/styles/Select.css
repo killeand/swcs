@@ -1,0 +1,15 @@
+.select-cont {
+    @apply relative flex flex-row items-center;
+}
+
+.select-label {
+    @apply flex items-center font-bold bg-primary-content py-1 px-2 rounded-l-md border-r border-primary;
+}
+
+.select-input {
+    @apply appearance-none bg-white border-t-2 border-b-2 border-primary-content py-0.5 px-1 flex-grow w-full border-r-2 rounded-r-md;
+}
+
+.select-end {
+    @apply absolute right-2 pointer-events-none;
+}

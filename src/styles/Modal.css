@@ -7,7 +7,7 @@
 }
 
 .modal-handle {
-    @apply flex items-center space-x-3 p-1 bg-sky-300 rounded-t-md;
+    @apply flex items-center space-x-3 p-1 bg-primary-content rounded-t-md;
 }
 
 .modal-title {

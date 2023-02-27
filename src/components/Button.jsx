@@ -10,7 +10,7 @@ export default function Button({className, as, color, ...props}) {
         purple: "from-purple-100 to-purple-400 hover:from-white hover:to-purple-300",
         white: "from-white to-gray-300 hover:from-gray-100 hover:to-gray-400",
         disabled: "from-gray-100 to-gray-400 text-gray-600",
-        default: "from-slate-100 to-slate-400 hover:from-white hover:to-slate-300"
+        default: "from-primary-content to-secondary-content hover:from-white hover:to-primary-content"
     }
     let classes = `${className || ""} bg-gradient-to-br px-2 py-1 rounded-xl border font-bold text-center ${colorClasses[color] || colorClasses.default}`;
     let Output = as || "button";
